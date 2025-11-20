@@ -15,3 +15,11 @@ class ShipClass:
         self.bullets = 0
         self.fired_bullets = []
         self.cool_down = 120
+    def draw(self,window):
+        window.blit(self.ship_img,(self.x,self.y)) #Dibuja la nave en la ventana dada
+    def get_width(self):
+        return self.ship_img.get_width()
+    def get_height(self):
+        return self.ship_img.get_height()
+    
+    
