@@ -34,7 +34,7 @@ class Enemy(ShipClass):
     def create(self,amount):
         enemies = []
         for _ in range(amount):
-            enemy = Enemy(x=random.randrange(20, 1920-ENEMY_BLUE_IMAGE.get_width()-20),y=random.randrange(-1000,-100),color=random.choice(['blue','green','purple']),speed=self.spped)
+            enemy = Enemy(x=random.randrange(20, 1920-ENEMY_BLUE_IMAGE.get_width()-20),y=random.randrange(50,300),color=random.choice(['blue','green','purple']),speed=self.spped)
             enemies.append(enemy)
         return enemies
 
