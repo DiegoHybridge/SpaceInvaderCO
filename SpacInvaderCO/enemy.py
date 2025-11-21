@@ -21,13 +21,16 @@ class Enemy(ShipClass):
     COLOR = {'blue':(ENEMY_BLUE_IMAGE,SHOT_BLUE_IMAGE),
              'green':(ENEMY_GREEN_IMAGE,SHOT_GREEN_IMAGE),
              'purple':(ENEMY_PURPLE_IMAGE,SHOT_PURPLE_IMAGE)}
+    
     def __init__(self, x=50, y=50, salud_de_vida=100, color = 'blue',speed=10):
         super().__init__(x, y, salud_de_vida)
         self.ship_img, self.bullet_img = self.COLOR[color]
         self.mask = pygame.mask.from_surface(self.ship_img)
         self.spped = speed
+
     def move(self):
         self.y += self.spped
+
     def create(self,amount):
         enemies = []
         for _ in range(amount):
