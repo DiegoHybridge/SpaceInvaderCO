@@ -18,5 +18,8 @@ class Drawing:
             enemy.draw(self.window)
         if player:
             player.draw(self.window)
+            # Dibujar balas del jugador
+            for bullet in player.fired_bullets:
+                bullet.draw(self.window)
         game.drawHud()
         pygame.display.update()
