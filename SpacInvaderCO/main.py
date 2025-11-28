@@ -1,6 +1,10 @@
 import os
 import sys
 import pygame
+from game import Game
+from enemy import Enemy
+from drawing import Drawing
+from player import Player
 
 # Inicializar pygame antes de importar módulos que cargan imágenes al import
 pygame.init()
@@ -9,10 +13,9 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Cargar imagen de bala usando current_dir
 BULLET_IMAGE = pygame.image.load(os.path.join(current_dir, 'assets', 'bullet.png'))
+PLAYER_IMAGE = pygame.image.load(os.path.join(current_dir, 'assets', 'player_image.png'))
 
-from game import Game
-from enemy import Enemy
-from drawing import Drawing
+
 
 def main():
     screen_w, screen_h = 1920, 1080
@@ -21,6 +24,10 @@ def main():
     
     # Crear instancia de Drawing
     drawer = Drawing(game.window)
+    
+    # Crear jugador
+    player = Player(x=screen_w // 2, y=screen_h - 100, health=100, 
+                    ship_img=PLAYER_IMAGE, bullet_img=BULLET_IMAGE)
     
     # Crear enemigos (usa el método create de una instancia)
     spawner = Enemy()
@@ -35,12 +42,13 @@ def main():
                 running = False
 
         # actualizar estado
+        player.move(screen_h, screen_w)
         for e in enemies:
             e.move()
         game.contador += 1
 
         # dibujar usando la clase Drawing
-        drawer.drawing(game, None, enemies, game.fps)
+        drawer.drawing(game, player, enemies, game.fps)
 
     pygame.quit()
     sys.exit()

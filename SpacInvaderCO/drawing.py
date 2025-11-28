@@ -16,5 +16,7 @@ class Drawing:
         self.window.blit(self.background_scaled,(0,0))
         for enemy in enemies[:]:
             enemy.draw(self.window)
+        if player:
+            player.draw(self.window)
         game.drawHud()
         pygame.display.update()
